@@ -1,0 +1,17 @@
+[project]
+name = "deepseekchat"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "honestcheese"}
+]
+requires-python = ">=3.12"
+dependencies = [
+    "python-dotenv (>=1.2.1,<2.0.0)",
+    "telebot (>=0.0.5,<0.0.6)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
