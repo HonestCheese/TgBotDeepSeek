@@ -309,7 +309,8 @@ class TaskBot:
                     print(f"❌ Ошибка парсинга JSON: {e}")
 
             # Убираем JSON из ответа пользователю
-            clean_response = re.sub(r'\[json\].*?\[/json\]\s*', '', full_response, flags=re.DOTALL | re.IGNORECASE)
+            clean_response = full_response.replace('[json]', '').replace('[/json]', '')
+            clean_response = re.sub(r'\[json\].*?\[/json\]', '', clean_response, flags=re.DOTALL)
 
             # Отправляем пользователю
             self.bot.reply_to(message, clean_response, parse_mode="Markdown")
