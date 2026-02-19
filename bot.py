@@ -239,7 +239,7 @@ class TaskBot:
 
             🌱 Низкий приоритет (3):
             • убраться в комнате
-            ИСПОЛЬЗУЙ MARKDOWN ДОСТУПНЫЙ ТЕЛЕГРАМУ
+            НЕ ОБОРАЧИВАЙ JSON ОТВЕТ В ТРОЙНЫЕ СКОБКИ
             ========== ТВОЙ ОТВЕТ (JSON + ТЕКСТ) ==========
             """
             print("📤 Отправляю запрос в DeepSeek...")
@@ -309,11 +309,10 @@ class TaskBot:
                     print(f"❌ Ошибка парсинга JSON: {e}")
 
             # Убираем JSON из ответа пользователю
-            clean_response = full_response.replace('[json]', '').replace('[/json]', '')
-            clean_response = re.sub(r'\[json\].*?\[/json\]', '', clean_response, flags=re.DOTALL)
 
+            clean_response = re.sub(r'\[json\].*?\[/json\]', '', full_response, flags=re.DOTALL).replace('[json]', '').replace('[/json]', '')
             # Отправляем пользователю
-            self.bot.reply_to(message, clean_response, parse_mode="Markdown")
+            self.bot.reply_to(message, clean_response, parse_mode=None)
             print("✅ Ответ отправлен")
 
     def run(self):
