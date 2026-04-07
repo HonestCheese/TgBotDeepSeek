@@ -1,4 +1,10 @@
-class UserInfoShema:
+from pydantic import BaseModel
+
+
+class UserInfoShema(BaseModel):
     email: str
-    hashed_password: str
-    name: str
+    password_hash: str
+    username: str
+
+    class Config:
+        from_attributes = True

@@ -1,12 +1,14 @@
 from pydantic import BaseModel
+from sqlalchemy.orm import DeclarativeBase, Mapped
 from sqlalchemy.testing.schema import mapped_column
 
 
-class Base(BaseModel):
+class Base(DeclarativeBase):
     pass
 
 class User(Base):
-    id: int = mapped_column(primary_key=True, auto_increment=True)
-    email: str = mapped_column(not_null=True)
-    username: str = mapped_column(not_null=True)
-    hashed_password: str = mapped_column(not_null=True)
+    __tablename__ = 'users'
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    email: Mapped[str] = mapped_column(nullable=False)
+    username: Mapped[str] = mapped_column(nullable=False)
+    password_hash: Mapped[str] = mapped_column(nullable=False)

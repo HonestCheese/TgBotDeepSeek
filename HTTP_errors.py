@@ -1,7 +1,7 @@
 from fastapi import HTTPException
 
 user_already_exists = HTTPException(
-    401,
+    409,
     detail="User with this email already exists"
 )
 
