@@ -48,7 +48,6 @@ app.add_middleware(
 
 
 
-app = FastAPI()
 admin = Admin(app, engine)
 
 
