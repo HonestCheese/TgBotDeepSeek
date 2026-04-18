@@ -35,6 +35,10 @@ def prepare_database():
             conn.execute(insert(User).values(**user))
         conn.commit()
 
+@pytest.fixture(autouse=True, scope="session")
+def email():
+    return "carol@example.com"
+
 
 @pytest.fixture(scope="session")
 def event_loop():

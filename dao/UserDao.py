@@ -10,7 +10,7 @@ class UserDao:
     def get_user(cls, email: str):
         with get_session_connection() as session:
             result = session.execute(select(User).where(User.email == email))
-            return result.one_or_none()
+            return result.scalar_one_or_none()
 
 
     @classmethod
